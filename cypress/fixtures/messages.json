@@ -1,0 +1,25 @@
+{
+  "pageTitles": {
+    "inventory": "Products",
+    "cart": "Your Cart",
+    "checkoutInfo": "Checkout: Your Information",
+    "checkoutOverview": "Checkout: Overview",
+    "checkoutComplete": "Checkout: Complete!"
+  },
+  "loginErrors": {
+    "lockedOut": "Epic sadface: Sorry, this user has been locked out.",
+    "invalidCredentials": "Epic sadface: Username and password do not match any user in this service",
+    "usernameRequired": "Epic sadface: Username is required",
+    "passwordRequired": "Epic sadface: Password is required",
+    "inventoryWithoutSession": "Epic sadface: You can only access '/inventory.html' when you are logged in."
+  },
+  "checkoutErrors": {
+    "firstNameRequired": "Error: First Name is required",
+    "lastNameRequired": "Error: Last Name is required",
+    "postalCodeRequired": "Error: Postal Code is required"
+  },
+  "checkoutComplete": {
+    "header": "Thank you for your order!",
+    "text": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+  }
+}
