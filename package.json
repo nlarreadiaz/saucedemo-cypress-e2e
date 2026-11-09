@@ -1,0 +1,43 @@
+{
+  "name": "saucedemo-cypress-e2e",
+  "version": "1.0.0",
+  "description": "End-to-end test suite for SauceDemo built with Cypress, TypeScript and the Page Object Model.",
+  "scripts": {
+    "cy:open": "cypress open --e2e",
+    "test": "cypress run",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:smoke": "cypress run --expose grepTags=@smoke",
+    "test:defects": "cypress run --expose grepTags=@known-defect",
+    "report": "node scripts/report.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Néstor Larrea Díaz",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cypress/grep": "^7.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "cypress": "^16.2.1",
+    "cypress-mochawesome-reporter": "^5.0.0",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^7.0.4",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1"
+  },
+  "allowScripts": {
+    "cypress@16.2.1": true
+  },
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  }
+}
