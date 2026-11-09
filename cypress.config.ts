@@ -6,6 +6,7 @@ export default defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     reportDir: 'cypress/reports',
+    reportTitle: 'SauceDemo E2E Report',
     reportPageTitle: 'SauceDemo E2E Report',
     charts: true,
     embeddedScreenshots: true,
