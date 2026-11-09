@@ -1,0 +1,39 @@
+{
+  "taxRate": 0.08,
+  "orderInfo": {
+    "payment": "SauceCard #31337",
+    "shipping": "Free Pony Express Delivery!"
+  },
+  "validCustomer": {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "postalCode": "28001"
+  },
+  "customers": [
+    {
+      "description": "a customer with a numeric postal code",
+      "firstName": "John",
+      "lastName": "Smith",
+      "postalCode": "90210",
+      "cart": ["sauce-labs-backpack"]
+    },
+    {
+      "description": "a customer with accented and hyphenated names",
+      "firstName": "María José",
+      "lastName": "García-Núñez",
+      "postalCode": "41004",
+      "cart": ["sauce-labs-bike-light", "sauce-labs-onesie"]
+    },
+    {
+      "description": "a customer with an alphanumeric postal code",
+      "firstName": "Oliver",
+      "lastName": "O'Brien",
+      "postalCode": "SW1A 1AA",
+      "cart": [
+        "sauce-labs-fleece-jacket",
+        "sauce-labs-bolt-t-shirt",
+        "test.allthethings()-t-shirt-(red)"
+      ]
+    }
+  ]
+}

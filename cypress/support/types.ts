@@ -13,3 +13,9 @@ export type Product = (typeof products.catalog)[number];
 
 /** Values accepted by the inventory sort dropdown: 'az' | 'za' | 'lohi' | 'hilo'. */
 export type SortOption = (typeof products.sortOptions)[keyof typeof products.sortOptions]['value'];
+
+export interface Customer {
+  firstName: string;
+  lastName: string;
+  postalCode: string;
+}
