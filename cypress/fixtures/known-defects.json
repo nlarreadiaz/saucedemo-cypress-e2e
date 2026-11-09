@@ -1,0 +1,41 @@
+{
+  "BUG-001": {
+    "title": "All product images show the same placeholder picture",
+    "users": ["problem"]
+  },
+  "BUG-002": {
+    "title": "Sorting the inventory does not reorder the products",
+    "users": ["problem", "error"]
+  },
+  "BUG-003": {
+    "title": "Some products cannot be added to the cart from the inventory",
+    "users": ["problem", "error"],
+    "affectedProducts": [
+      "sauce-labs-bolt-t-shirt",
+      "sauce-labs-fleece-jacket",
+      "test.allthethings()-t-shirt-(red)"
+    ]
+  },
+  "BUG-004": {
+    "title": "Products cannot be removed from the cart on the inventory page",
+    "users": ["problem", "error"],
+    "affectedProducts": ["sauce-labs-backpack"]
+  },
+  "BUG-005": {
+    "title": "Opening a product shows the details of a different product",
+    "users": ["problem"],
+    "affectedProducts": ["sauce-labs-backpack"]
+  },
+  "BUG-006": {
+    "title": "Typing in the Last Name field writes into the First Name field",
+    "users": ["problem"]
+  },
+  "BUG-007": {
+    "title": "Last Name field ignores input and the form is submitted without it",
+    "users": ["error"]
+  },
+  "BUG-008": {
+    "title": "Clicking Finish does not complete the order",
+    "users": ["error"]
+  }
+}
