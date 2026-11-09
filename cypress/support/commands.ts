@@ -1,5 +1,7 @@
 import users from '../fixtures/users.json';
 import { loginPage } from '../pages/LoginPage';
+import { inventoryPage } from '../pages/InventoryPage';
+import { getProducts } from './products';
 import type { UserKey } from './types';
 
 /**
@@ -28,4 +30,22 @@ Cypress.Commands.add('login', (userKey: UserKey) => {
       cacheAcrossSpecs: true,
     },
   );
+});
+
+/**
+ * Puts products in the cart without using the UI and opens the inventory.
+ * SauceDemo stores the cart in localStorage as an array of product ids, so it
+ * is written before the app loads. Use it when the cart is a precondition of
+ * the test, not the behaviour under test (that is covered in cart.cy.ts).
+ */
+Cypress.Commands.add('seedCart', (slugs: readonly string[]) => {
+  const ids = getProducts(slugs).map((product) => product.id);
+
+  cy.visit(inventoryPage.path, {
+    // Inner routes answer 404 even though the SPA renders them (see BasePage).
+    failOnStatusCode: false,
+    onBeforeLoad(win) {
+      win.localStorage.setItem('cart-contents', JSON.stringify(ids));
+    },
+  });
 });

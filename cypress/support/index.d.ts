@@ -8,6 +8,13 @@ declare global {
        * @example cy.login('standard')
        */
       login(userKey: UserKey): Chainable<void>;
+
+      /**
+       * Seeds the cart with products from `fixtures/products.json` (by slug)
+       * and opens the inventory page. Requires an active session (cy.login).
+       * @example cy.seedCart(['sauce-labs-backpack'])
+       */
+      seedCart(slugs: readonly string[]): Chainable<void>;
     }
   }
 }
