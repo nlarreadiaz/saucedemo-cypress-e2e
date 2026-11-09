@@ -168,7 +168,7 @@ Each defect has a test that asserts the **expected** behaviour, so it fails whil
 **Néstor Larrea Díaz**: QA Automation
 
 - GitHub: [github.com/nlarreadiaz](https://github.com/nlarreadiaz)
-- LinkedIn: [linkedin.com/in/YOUR-PROFILE](https://www.linkedin.com/in/YOUR-PROFILE)
+- LinkedIn: [linkedin.com/in/nlarreadiaz](https://www.linkedin.com/in/nlarreadiaz/)
 
 ## License
 
