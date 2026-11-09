@@ -1,0 +1,116 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancel outdated runs of the same branch / pull request.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    name: Lint, format and types
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies (without Cypress binary)
+        run: npm ci
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+
+  e2e:
+    name: E2E (Chrome)
+    needs: static-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v7
+        with:
+          browser: chrome
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-report
+          path: cypress/reports
+          if-no-files-found: ignore
+
+      # Also uploaded on success: a test that passed on retry still leaves
+      # screenshots of its failed attempts, which helps spot flaky tests.
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-videos
+          path: cypress/videos
+          if-no-files-found: ignore
+
+  known-defects:
+    name: Known defects (non-blocking)
+    needs: static-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # These tests are expected to fail while the bugs exist. The job reports
+    # them without failing the workflow, so the CI badge reflects regressions only.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Run known-defect tests
+        uses: cypress-io/github-action@v7
+        with:
+          browser: chrome
+          expose: grepTags=@known-defect
+
+      - name: Upload known-defects report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: known-defects-report
+          path: cypress/reports
+          if-no-files-found: ignore
